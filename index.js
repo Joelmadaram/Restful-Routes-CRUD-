@@ -27,11 +27,18 @@ const comments = [
 ]
 
 app.get('/comments', (req, res) => {
-    res.render('comments/index', { comments })
+    res.render('comments/index', { comments });
 })
 
 app.get('/comments/new', (req, res) => {
     res.render('comments/new')
+})
+
+app.post('/comments', (req, res) => {
+    console.log(req.body);
+    const {username, comment} = req.body;
+    comments.push({username, comment })
+    res.redirect('/comments')
 })
 
 app.get('/tacos', (req, res) => {
